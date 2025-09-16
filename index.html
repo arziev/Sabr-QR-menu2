@@ -1,0 +1,224 @@
+<!doctype html>
+<html><head><title>SABR</title><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>QR Menu — Экспорт</title><style>
+  :root{
+    --brown: #4B2E2E;
+    --gold: #CFAF70;
+    --beige: #F5F5DC;
+    --card-bg: rgba(255,255,255,0.95);
+    --muted: #6b5b55;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(160deg, #fffaf0 0%, #f3efe8 50%, #efe6db 100%);
+    color: var(--brown);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    padding:24px;
+  }
+  .container{
+    max-width:1100px;
+    margin:0 auto;
+  }
+
+  header{
+    display:flex;
+    gap:16px;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:18px;
+  }
+  .brand{
+    display:flex;
+    gap:12px;
+    align-items:center;
+  }
+  .logo{
+    width:64px;height:64px;border-radius:12px;
+    background: linear-gradient(135deg,var(--brown),#3e2929);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--beige);font-weight:700;font-size:20px;
+    box-shadow:0 6px 18px rgba(75,46,46,0.18);
+  }
+  h1{margin:0;font-size:20px}
+  .sub{font-size:13px;color:var(--muted)}
+
+  /* categories */
+  .cats{
+    display:flex;
+    gap:10px;
+    margin:10px 0 20px 0;
+    flex-wrap:wrap;
+    position: sticky;
+    top: 10px;
+    z-index: 10;
+    background: rgba(255, 250, 240, 0.9);
+    padding: 10px;
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+  }
+  .cat{
+    padding:8px 12px;border-radius:999px;background:linear-gradient(180deg,var(--beige),rgba(255,255,255,0.9));
+    border:1px solid rgba(75,46,46,0.06);
+    cursor:pointer;font-weight:600;color:var(--brown);
+    box-shadow: 0 6px 12px rgba(203,175,112,0.06);
+    transition: all 0.3s ease;
+  }
+  .cat.active{box-shadow:0 8px 18px rgba(203,175,112,0.18);transform:translateY(-3px); background:linear-gradient(180deg,var(--gold),#dfb86d); color: var(--brown);}
+
+  /* grid */
+  .category-section {
+    margin: 40px 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--gold);
+    scroll-margin-top: 100px;
+  }
+  .category-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--brown);
+    margin: 0;
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+  }
+  .category-title:before {
+    content: "";
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: var(--gold);
+    border-radius: 50%;
+    margin-right: 12px;
+  }
+  
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+    gap:16px;
+    margin-bottom: 30px;
+  }
+  .card{
+    background:var(--card-bg);
+    border-radius:14px;padding:12px;
+    box-shadow: 0 10px 30px rgba(75,46,46,0.06);
+    display:flex;gap:12px;align-items:flex-start;
+    transition:transform .18s ease, box-shadow .18s ease;
+    border:1px solid rgba(75,46,46,0.03);
+  }
+  .card:hover{transform:translateY(-6px); box-shadow:0 20px 40px rgba(75,46,46,0.09);}
+  .thumb{width:96px;height:72px;border-radius:10px;overflow:hidden;flex-shrink:0;background:#eee;display:flex;align-items:center;justify-content:center}
+  .thumb img{width:100%;height:100%;object-fit:cover}
+  .meta{flex:1}
+  .title{font-weight:700;margin:0 0 6px 0}
+  .desc{font-size:13px;color:var(--muted);margin:0 0 8px 0}
+  .price{font-weight:800;color:var(--brown);font-size:16px}
+
+  /* responsive tweaks */
+  @media (max-width:600px){
+    header{flex-direction:column;align-items:flex-start;gap:12px}
+    .cats {
+      position: static;
+      overflow-x: auto;
+      padding-bottom: 5px;
+      justify-content: flex-start;
+    }
+    .cat {
+      white-space: nowrap;
+    }
+    .category-title {
+      font-size: 20px;
+    }
+  }
+  </style></head><body><div class="container"><header><div class="brand"><div class="logo">QR</div><div><h1>SABR</h1><div class="sub">Доброму гостю хозяин рад</div></div></div></header><div id="categories" class="cats"></div><main id="menu-content"></main></div><script type="application/json" id="embedded-data">[{"category":"Роллы","title":"Филадельфия с огурцом","desc":"","price":"400","img":"https://media.leverans.ru/product_images_inactive/surgut/kafe-meal-street/filadelfiya_s_ogurtsom.jpg"},{"category":"Роллы","title":"Филадельфия класическая","desc":"","price":"450","img":"https://static.tildacdn.com/stor3362-3235-4265-b838-336362633038/43302039.jpg"},{"category":"Роллы","title":"Калифорния с лососем","desc":"","price":"400","img":"https://scdn.chibbis.ru/live/products/ee7f93fcf02f7086f120cbdf5699c90d.jpeg"},{"category":"Роллы","title":"Каалифорния с крабом ","desc":"","price":"350","img":"https://avatars.mds.yandex.net/i?id=63ba2b22bb57c95295f512dc2e1673ef9c65f7dd-10897519-images-thumbs&n=13"},{"category":"Роллы","title":"Мини ролл с огурцом ","desc":"","price":"150","img":"https://avatars.mds.yandex.net/i?id=42857e5bbf635505b27d7267b81ca4c5bc509b3d-5097034-images-thumbs&n=13"},{"category":"Роллы","title":"Мини ролл с лососем ","desc":"","price":"250","img":"https://avatars.mds.yandex.net/i?id=9e8f114f37d28aadea7ce4772afce779_l-4120702-images-thumbs&n=13"},{"category":"Роллы","title":"Запеченая филадельфия ","desc":"","price":"350","img":"https://avatars.mds.yandex.net/i?id=2c65152c5592ddf2aaf3a070e2d75d0fe04d2dc7-5241709-images-thumbs&n=13"},{"category":"Роллы","title":"Калифорния темпура ","desc":"","price":"350","img":"https://avatars.mds.yandex.net/i?id=31b67a588fb605f4fa1966d42104527fcea15191-13595317-images-thumbs&n=13"},{"category":"Роллы","title":"Тайга","desc":"","price":"450","img":"https://avatars.mds.yandex.net/i?id=0f8e640c676cfc8e6a944ac57636fff160cef761-5233016-images-thumbs&n=13"},{"category":"Пиццы","title":"Пепперони","desc":"","price":"450/600","img":"https://avatars.mds.yandex.net/i?id=937d41a6e0b0080265e44414b224e18a781b854b-4078171-images-thumbs&n=13"},{"category":"Пиццы","title":"Четыре сезона ","desc":"","price":"450/600","img":"https://avatars.mds.yandex.net/i?id=b08720afde83a200f3a11ed65a0f9a3690d11633-5875509-images-thumbs&n=13"},{"category":"Пиццы","title":"Цезарь","desc":"","price":"450/600","img":"https://avatars.mds.yandex.net/i?id=4d0fb5df63e96307d49b598023d89f215fa4dc47-12714972-images-thumbs&n=13"},{"category":"Пиццы","title":"Четыре сыра","desc":"","price":"450/600","img":"https://avatars.mds.yandex.net/i?id=0574cbb2cc823e3f5fa2274ea96cd0fa07a002ee-13016216-images-thumbs&n=13"},{"category":"Пиццы","title":"Маргарита ","desc":"","price":"400/500","img":"https://avatars.mds.yandex.net/get-altay/14451083/2a00000193baf19a24ee3dcb7264e9363a94/XXXL"},{"category":"Пиццы","title":"Куринный ","desc":"","price":"450/600","img":"https://static.pizzasushiwok.ru/images/menu_new/750t-1300.jpg"},{"category":"Фаст-Фуд","title":"Бургер","desc":"Бургер с курицей","price":"160","img":"https://avatars.mds.yandex.net/i?id=589ab7d24aa39705caa3298b6f4c2fbc2912f4e6-5084109-images-thumbs&n=13"},{"category":"Фаст-Фуд","title":"Шаурма","desc":"Шаурма с курицей","price":"200","img":"https://avatars.mds.yandex.net/i?id=08c4eaa5912f98404fc1f6d7fbb70e7eb4a3cfa2-16543803-images-thumbs&n=13"},{"category":"Фаст-Фуд","title":"Крылышки ","desc":"0,5 кг / 1 кг","price":"300/600","img":"https://avatars.mds.yandex.net/i?id=732650ef5ad48134407e69f3ad98159cef904afc-5297573-images-thumbs&n=13"},{"category":"Фаст-Фуд","title":"Наггетсы","desc":"6 шт / 9 шт","price":"100/150","img":"https://avatars.mds.yandex.net/i?id=901d3d9adaa306df1a050ecdddc5001f5b08f52f-5338555-images-thumbs&n=13"},{"category":"Фаст-Фуд","title":"Стрипсы ","desc":"3 шт / 6 шт / 9 шт","price":"120/240/360","img":"https://avatars.mds.yandex.net/i?id=172b81c0f97b1d772c982165495ed53662b11a30-5233153-images-thumbs&n=13"},{"category":"Фаст-Фуд","title":"Сырные палочки","desc":"1 шт","price":"25","img":"https://avatars.mds.yandex.net/i?id=d0cde7d54ba5f2d95f8686584de2f39745929b14-16496400-images-thumbs&n=13"},{"category":"Фаст-Фуд","title":"Картофель фри","desc":"","price":"120","img":"https://avatars.mds.yandex.net/i?id=82ff7881a21c84dc32b732f9d3015f9bbb63c006-8819226-images-thumbs&n=13"},{"category":"Фаст-Фуд","title":"Картофель по-деревенски ","desc":"","price":"140","img":"https://avatars.mds.yandex.net/i?id=0f4aa92adf06f254fc2495b140716b2235d3dc60-4478522-images-thumbs&n=13"},{"category":"Соусы","title":"Ассорти","desc":"","price":"30","img":"https://avatars.mds.yandex.net/i?id=fc0fa94440a85bbd8da8495bedb5b3dffb605fa2-4080060-images-thumbs&n=13"}]</script><script>
+  (function(){
+    function escapeHtml(s){ return (s+'').replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m] }) }
+    
+    const menu = JSON.parse(document.getElementById('embedded-data').textContent || '[]');
+    const menuContent = document.getElementById('menu-content');
+    const catsEl = document.getElementById('categories');
+    
+    if(menu.length===0){ 
+      menuContent.innerHTML = '<div>Меню пусто.</div>'; 
+      return;
+    }
+    
+    // Compute categories
+    const s = new Set(menu.map(m => m.category || 'Прочее'));
+    const categories = ['Все', ...Array.from(s)];
+    
+    // Render categories navigation
+    catsEl.innerHTML='';
+    categories.forEach(cat=>{
+      const btn = document.createElement('button');
+      btn.className='cat' + (cat==='Все' ? ' active' : '');
+      btn.textContent = cat;
+      btn.onclick = () => {
+        document.querySelectorAll('.cat').forEach(c=>c.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // Scroll to category
+        if (cat === 'Все') {
+          // Scroll to top
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          // Scroll to category section
+          const categoryElement = document.getElementById('category-' + cat.replace(/\s+/g, '-'));
+          if (categoryElement) {
+            const yOffset = -80; // Offset for sticky header
+            const y = categoryElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }
+        }
+      };
+      catsEl.appendChild(btn);
+    });
+    
+    // Group items by category
+    const groupedItems = {};
+    menu.forEach(item => {
+      const category = item.category || 'Прочее';
+      if (!groupedItems[category]) {
+        groupedItems[category] = [];
+      }
+      groupedItems[category].push(item);
+    });
+    
+    // Render each category section
+    for (const category in groupedItems) {
+      // Create category section
+      const categorySection = document.createElement('div');
+      categorySection.className = 'category-section';
+      categorySection.id = 'category-' + category.replace(/\s+/g, '-');
+      
+      const categoryTitle = document.createElement('h2');
+      categoryTitle.className = 'category-title';
+      categoryTitle.textContent = category;
+      
+      categorySection.appendChild(categoryTitle);
+      menuContent.appendChild(categorySection);
+      
+      // Create grid for items in this category
+      const grid = document.createElement('div');
+      grid.className = 'grid';
+      
+      // Render items in this category
+      groupedItems[category].forEach(item=>{
+        const card = document.createElement('article');
+        card.className='card';
+        card.innerHTML = '<div class="thumb"><img loading="lazy" src="'+(item.img||'')+'" alt="'+escapeHtml(item.title)+'" onerror="this.src=\'https://via.placeholder.com/120x90?text=Фото\'"></div>'
+          + '<div class="meta">'
+          + '<div style="display:flex;justify-content:space-between;align-items:center">'
+          + '<h4 class="title">'+escapeHtml(item.title)+'</h4>'
+          + '<div class="price">'+escapeHtml(item.price)+' сом</div>'
+          + '</div>'
+          + '<p class="desc">'+escapeHtml(item.desc || '')+'</p>'
+          + '</div>';
+        grid.appendChild(card);
+      });
+      
+      menuContent.appendChild(grid);
+    }
+  })();
+  </script></body></html>
